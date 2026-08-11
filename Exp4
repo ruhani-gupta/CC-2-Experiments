@@ -1,0 +1,60 @@
+EXPERIMENT-4.1 MIDDLE OF LINKED LIST(QUESTION-876 LEETCODE)
+AIM:-Given the head of a singly linked list, return the middle node of the linked list.If there are two middle nodes, return the second middle node.
+ALGORITHM:-
+1. Start with the head of the linked list.
+2. Take two pointers: slow and fast, both starting from the head.
+3. Move the slow pointer one step at a time.
+4. Move the fast pointer two steps at a time.
+5. Continue this process until the fast pointer reaches the end of the list.
+6. When the fast pointer reaches the end, the slow pointer will be at the middle.
+7. Return the node pointed to by slow.
+CODE:-
+class Solution {
+public:
+    ListNode* middleNode(ListNode* head) {
+        ListNode*slow=head;
+        ListNode*fast=head;
+        while(fast!=nullptr&&fast->next!=nullptr){
+            slow=slow->next;
+            fast=fast->next->next;
+        }
+        return slow;
+    }
+};
+
+EXPERIMENT-4.2 PALIDROME OF LINKEDLIST (QUESTION-234 LEETCODE)
+AIM:-Given the head of a singly linked list, return true if it is a palindrome or false otherwise.
+ALGORITHM :-
+1. Create an empty stack s1.
+2. Set temp = head to start from the first node.
+3. Traverse the linked list:
+     - Push each node's value into the stack.
+     - Move temp to the next node.
+4. Reset temp = head.
+5. Traverse the linked list again:
+      - Compare temp->val with the value at the top of the stack.
+      - If they are different, return false.
+      - If they are same, remove the top element using pop().
+      - Move temp to the next node.
+6. If all values match, return true.
+7. Therefore, the linked list is a palindrome
+CODE:-class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        stack<int>s1;
+        ListNode* temp=head;
+        while(temp!=NULL){
+            s1.push(temp->val);
+            temp=temp->next;
+        }
+         temp=head;
+        while(temp!=NULL){
+            if(temp->val!=s1.top()){
+                return false;
+            }
+            s1.pop();
+            temp=temp->next;
+        }
+        return true;
+    }
+};
